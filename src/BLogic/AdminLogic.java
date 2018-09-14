@@ -36,6 +36,10 @@ public class AdminLogic implements IAdminLogic
       return clerks.getAllClerks();
    }
 
+   /**
+    * Finds an employee by employee number and sets a new salary for that employee
+    * @param empNo,salary 
+    * **/
    @Override
    public void setSalary(int empNo, double salary)
    {
