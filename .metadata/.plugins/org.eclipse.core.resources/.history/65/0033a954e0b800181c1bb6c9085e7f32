@@ -1,13 +1,16 @@
 import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
 
-import BLogic.IAdminLogic;
 import Controller.Controller;
 import Controller.IController;
 
 public class AdminMain {
 
 	public static void main(String[] args) {
+
+		if (System.getSecurityManager() == null) {
+			System.setSecurityManager(new RMISecurityManager());
+		}
 
 		try {
 
