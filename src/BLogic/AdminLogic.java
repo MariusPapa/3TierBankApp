@@ -48,13 +48,26 @@ public class AdminLogic extends UnicastRemoteObject implements IAdminLogic
    @Override
    public void setSalary(int empNo, double salary)
    {
+      if(getClerk(empNo)!=null)
+         getClerk(empNo).setSalary(salary);
+      else 
+      {
+         System.out.println(empNo + " is not a valid employee number");
+      }
+
+   }
+   
+   public Clerk getClerk(int empNo)
+   {
       for (int i = 0; i < clerks.size(); i++)
       {
 
          if (clerks.getAllClerks().get(i).getEmployeeNo() == empNo)
-            clerks.getAllClerks().get(i).setSalary(salary);
+         {
+          return clerks.getAllClerks().get(i);
+         }
       }
-
+      return null;
    }
 
 }
