@@ -8,10 +8,10 @@ import Model.ClerkList;
 public class AdminLogic implements IAdminLogic
 {
    private ClerkList clerks;
-   
+
    public AdminLogic(ClerkList c)
    {
-      this.clerks=c;
+      this.clerks = c;
    }
 
    @Override
@@ -28,27 +28,31 @@ public class AdminLogic implements IAdminLogic
       return this.clerks.removeClerk(employeeNo);
    }
 
-//the method getAllClerks from ClerkList should be removed??????
+   // the method getAllClerks from ClerkList should be removed??????
    @Override
-   public ArrayList<Clerk> getAllClerks()
+   public ClerkList getAllClerks()
    {
       // TODO Auto-generated method stub
-      return clerks.getAllClerks();
+      return clerks;
    }
 
    /**
-    * Finds an employee by employee number and sets a new salary for that employee
-    * @param empNo,salary 
-    * **/
+    * Finds an employee by employee number and sets a new salary for that
+    * employee
+    * 
+    * @param empNo
+    *           ,salary
+    **/
    @Override
    public void setSalary(int empNo, double salary)
    {
-      for(int i=0;i<getAllClerks().size();i++)
+      for (int i = 0; i < clerks.size(); i++)
       {
-         if(getAllClerks().get(i).getEmployeeNo()==empNo)
-            getAllClerks().get(i).setSalary(salary);
+
+         if (clerks.getAllClerks().get(i).getEmployeeNo() == empNo)
+            clerks.getAllClerks().get(i).setSalary(salary);
       }
-      
+
    }
 
 }
