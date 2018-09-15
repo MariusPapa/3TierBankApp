@@ -26,8 +26,8 @@ public class logicMain {
 			
 			//uploading objects in the registry
 			adminRg.rebind("admin", admin);
-			clerkRg.rebind("clerk", clerk);
-			customerRg.rebind("customer", customer);
+		//	clerkRg.rebind("clerk", clerk);
+		//	customerRg.rebind("customer", customer);
 			
 			System.out.println("Starting server...");
 			
