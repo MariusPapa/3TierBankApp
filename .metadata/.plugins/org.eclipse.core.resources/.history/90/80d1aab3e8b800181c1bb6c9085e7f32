@@ -1,0 +1,24 @@
+import java.rmi.Naming;
+
+import BLogic.IAdminLogic;
+import Controller.Controller;
+import Controller.IController;
+
+
+public class CustomerMain {
+	
+	public static void main(String[] args) {
+		try {
+
+			ICustomerLogic admin = (ICustomerLogic) Naming
+					.lookup("rmi://localhost:1097/customer");
+
+			IController controller = new Controller();
+			controller.openApp();
+			System.out.println("Admin started .. ");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
