@@ -10,9 +10,9 @@ public class logicMain {
 		{
 			//creating registries
 			/*
-			 * customer 		- port 1097
-			 * clerk 			- port 1098
-			 * administrator 	- port 1099
+			 * customer - port 1097
+			 * clerk 	- port 1098
+			 * administrators 	- port 1099
 			 * */
 			Registry adminRg = LocateRegistry.createRegistry(1099);
 			Registry clerkRg = LocateRegistry.createRegistry(1098);
@@ -28,6 +28,7 @@ public class logicMain {
 			adminRg.rebind("admin", admin);
 			clerkRg.rebind("clerk", clerk);
 			customerRg.rebind("customer", customer);
+			
 			
 			System.out.println("Starting server...");
 			

@@ -10,7 +10,6 @@ public class AdminMain {
 		try {
 			IAdminLogic sir = (IAdminLogic) Naming
 					.lookup("rmi://localhost:1099/admin");
-			
 			IController controller = new Controller();
 			controller.openApp();
 			System.out.println("Admin started .. ");
