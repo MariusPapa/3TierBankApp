@@ -11,13 +11,16 @@ import Model.CustomerList;
 public class CustomerLogic extends UnicastRemoteObject implements
       ICustomerLogic
 {
-   Customer cust;
    CustomerList customers;
-
-   public CustomerLogic(Customer cust, CustomerList list)
+   
+   public CustomerLogic() throws RemoteException
+   {
+	   this.customers = new CustomerList();
+   }
+   
+   public CustomerLogic(CustomerList list)
          throws RemoteException
    {
-      this.cust = cust;
       this.customers = list;
    }
 
@@ -30,14 +33,14 @@ public class CustomerLogic extends UnicastRemoteObject implements
    @Override
    public double seeBalance(int accNo)
    {
-
+/*
       for (int i = 0; i < cust.getAccounts().size(); i++)
       {
          if (cust.getAccounts().get(i).getAccountNo() == accNo)
          {
             return cust.getAccounts().get(i).getBalance();
          }
-      }
+      }*/
       return -1;
 
    }
@@ -45,7 +48,7 @@ public class CustomerLogic extends UnicastRemoteObject implements
    @Override
    public void transferMonay(int senderAcc, int receiverAcc, double sum)
    {
-      for (int i = 0; i < cust.getAccounts().size(); i++)
+   /*   for (int i = 0; i < cust.getAccounts().size(); i++)
       {
          // find the account from which you transfer the money and check the
          // balance
@@ -73,7 +76,7 @@ public class CustomerLogic extends UnicastRemoteObject implements
                   .println("Incorect account number or not enough money in your account");
          }
       }
-
+*/
    }
 
    /**
@@ -98,7 +101,7 @@ public class CustomerLogic extends UnicastRemoteObject implements
    @Override
    public ArrayList<Account> seeAllAccount()
    {
-      return this.cust.getAccounts();
+      return null;
 
    }
 

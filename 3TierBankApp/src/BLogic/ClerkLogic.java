@@ -12,10 +12,9 @@ import Model.Person;
 public class ClerkLogic extends UnicastRemoteObject implements IClerkLogic
 {
    private CustomerList cList;
-   
-    public ClerkLogic(CustomerList c) throws RemoteException
+      
+    public ClerkLogic() throws RemoteException
    {
-     this.cList=c;
    }
 
    @Override

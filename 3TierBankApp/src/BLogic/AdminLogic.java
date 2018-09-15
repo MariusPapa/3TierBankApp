@@ -10,7 +10,11 @@ import Model.ClerkList;
 public class AdminLogic extends UnicastRemoteObject implements IAdminLogic
 {
    private ClerkList clerks;
-
+   
+   public AdminLogic() throws RemoteException
+   {
+	   this.clerks = new ClerkList();
+   }
    public AdminLogic(ClerkList c) throws RemoteException
    {
       this.clerks = c;
