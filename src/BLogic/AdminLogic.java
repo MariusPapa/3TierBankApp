@@ -1,15 +1,17 @@
 package BLogic;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import Model.Clerk;
 import Model.ClerkList;
 
-public class AdminLogic implements IAdminLogic
+public class AdminLogic extends UnicastRemoteObject implements IAdminLogic
 {
    private ClerkList clerks;
 
-   public AdminLogic(ClerkList c)
+   public AdminLogic(ClerkList c) throws RemoteException
    {
       this.clerks = c;
    }

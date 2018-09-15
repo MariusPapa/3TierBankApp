@@ -1,5 +1,7 @@
 package BLogic;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import Model.Account;
@@ -7,11 +9,11 @@ import Model.Customer;
 import Model.CustomerList;
 import Model.Person;
 
-public class ClerkLogic implements IClerkLogic
+public class ClerkLogic extends UnicastRemoteObject implements IClerkLogic
 {
    private CustomerList cList;
    
-    public ClerkLogic(CustomerList c)
+    public ClerkLogic(CustomerList c) throws RemoteException
    {
      this.cList=c;
    }

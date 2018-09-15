@@ -16,8 +16,6 @@ public class Customer
       this.clientFrom = clinetFrom;
    }
 
- 
-
    public Customer(Person per, Date clinetFrom)
    {
       this.personalInfo = per;
@@ -27,26 +25,30 @@ public class Customer
 
    /**
     * Add a new account for this customer in account list
+    * 
     * @param acc
-    * */
+    */
    public synchronized void addAccount(Account acc)
    {
       this.accounts.add(acc);
    }
+
    /**
     * Removes one of accounts owned by the customer from the account list
+    * 
     * @return
-    * */
+    */
    public synchronized Account deleteAccount(int accNo)
-   { Account acc;
-      for(int i=0;i<this.accounts.size();i++)
+   {
+      Account acc;
+      for (int i = 0; i < this.accounts.size(); i++)
       {
-         if(this.accounts.get(i).getAccountNo()==accNo)
+         if (this.accounts.get(i).getAccountNo() == accNo)
          {
-            acc=this.accounts.get(i);
+            acc = this.accounts.get(i);
             return acc;
          }
-            
+
       }
       return null;
    }
@@ -55,9 +57,25 @@ public class Customer
    {
       return personalInfo;
    }
+
    public synchronized ArrayList<Account> getAccounts()
    {
       return accounts;
+   }
+
+   /**
+    * Finds one of the clients accounts based on the account number.Return null
+    * if the account does not exists
+    * @return
+    **/
+   public synchronized Account getAccount(int accNo)
+   {
+      for (int i = 0; i < this.accounts.size(); i++)
+      {
+         if (this.accounts.get(i).getAccountNo() == accNo)
+            return accounts.get(i);
+      }
+      return null;
    }
 
    public synchronized void setAccounts(ArrayList<Account> accounts)
@@ -67,8 +85,9 @@ public class Customer
 
    public synchronized String toString()
    {
-      return "Customer info : "+"\n" + personalInfo.toString() + "\nAccounts : "
-            + accounts.toString() + "\nClint from :" + clientFrom;
+      return "Customer info : " + "\n" + personalInfo.toString()
+            + "\nAccounts : " + accounts.toString() + "\nClint from :"
+            + clientFrom;
    }
 
 }
