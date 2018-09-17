@@ -1,0 +1,28 @@
+package Controller;
+
+import Model.AdminList;
+import Model.ClerkList;
+import Model.CustomerList;
+
+public class Controller implements IController {
+	
+	private CustomerList customerList;
+	private ClerkList clerkList;
+	private AdminList adminList;
+	
+	public Controller(CustomerList customerList, ClerkList clerkList,
+			AdminList list) {
+
+		this.customerList = customerList;
+		this.clerkList = clerkList;
+		this.adminList = list;
+	}
+	
+	public Controller()
+	{
+		this.customerList = new CustomerList();
+		this.clerkList = new ClerkList();
+		this.adminList = new AdminList();
+	}
+	
+}

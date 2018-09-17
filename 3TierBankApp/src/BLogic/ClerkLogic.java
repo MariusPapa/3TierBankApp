@@ -4,6 +4,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import Controller.Controller;
+import Controller.IController;
 import Model.Account;
 import Model.Customer;
 import Model.CustomerList;
@@ -11,16 +13,17 @@ import Model.Person;
 
 public class ClerkLogic extends UnicastRemoteObject implements IClerkLogic
 {
-   private CustomerList cList;
-      
+	private IController controller;
+	
     public ClerkLogic() throws RemoteException
    {
+    	this.controller = new Controller();
    }
 
    @Override
    public void registerCustomer(Customer c)
    {
-      cList.addCustomer(c);
+      controller.registerCustomer(c);
       
    }
 
@@ -31,36 +34,31 @@ public class ClerkLogic extends UnicastRemoteObject implements IClerkLogic
     **/
    public synchronized Customer seeCustomerInfo(int ssn)
    {
-
-     return cList.getCustomer(ssn);
-
+     return controller.seeCustomerInfo(ssn);
    }
-
    @Override
    public Account closeCustomerAccount(int ssn, int accNo)
    {
-     return cList.getCustomer(ssn).deleteAccount(accNo);
+     return controller.closeCustomerAccount(ssn, accNo);
    }
 
    @Override
    public Customer closeCustomerContract(int ssn)
    {
-      // TODO Auto-generated method stub
-     return cList.removeCustomer(ssn);
+     return controller.closeCustomerContract(ssn);
    }
 
    @Override
    public void changeCustomerAddress(int ssn, String address)
    {
-      // TODO Auto-generated method stub
-      cList.getCustomer(ssn).getCustomerInfo().setStreetAddress(address);
+      controller.changeCustomerAddress(ssn, address);;
    }
 
    @Override
    public ArrayList<Customer> getAllCustomers()
    {
       // TODO Auto-generated method stub
-      return cList.getAllCustomers();
+      return controller.getAllCustomers();
    }
 
 }

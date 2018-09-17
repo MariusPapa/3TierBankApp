@@ -1,0 +1,12 @@
+package Controller;
+
+import Model.AdminList;
+import Model.ClerkList;
+import Model.CustomerList;
+
+public class Controller implements IController {
+	
+	private CustomerList customerList;
+	private ClerkList clerkList;
+	private AdminList list;
+}
