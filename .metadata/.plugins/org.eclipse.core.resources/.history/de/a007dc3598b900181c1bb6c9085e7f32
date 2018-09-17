@@ -1,0 +1,74 @@
+package View;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.GridLayout;
+import java.awt.GridBagLayout;
+import javax.swing.JButton;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+
+public class AdminFirstPage extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					AdminFirstPage frame = new AdminFirstPage();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public AdminFirstPage() {
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 729, 637);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JPanel adminMenuPanel = new JPanel();
+		adminMenuPanel.setBounds(12, 13, 195, 576);
+		contentPane.add(adminMenuPanel);
+		GridBagLayout gbl_adminMenuPanel = new GridBagLayout();
+		gbl_adminMenuPanel.columnWidths = new int[]{0, 0, 0, 0};
+		gbl_adminMenuPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_adminMenuPanel.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_adminMenuPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		adminMenuPanel.setLayout(gbl_adminMenuPanel);
+		
+		JButton btnClerks = new JButton("Clerks");
+		GridBagConstraints gbc_btnClerks = new GridBagConstraints();
+		gbc_btnClerks.insets = new Insets(0, 0, 5, 0);
+		gbc_btnClerks.gridx = 2;
+		gbc_btnClerks.gridy = 4;
+		adminMenuPanel.add(btnClerks, gbc_btnClerks);
+		
+		JButton btnCustomers = new JButton("Customers");
+		GridBagConstraints gbc_btnCustomers = new GridBagConstraints();
+		gbc_btnCustomers.gridx = 2;
+		gbc_btnCustomers.gridy = 9;
+		adminMenuPanel.add(btnCustomers, gbc_btnCustomers);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(219, 13, 492, 576);
+		contentPane.add(panel);
+	}
+}

@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.rmi.registry.Registry"/>
+<fullyQualifiedTypeName name="java.rmi.registry.LocateRegistry"/>
+<fullyQualifiedTypeName name="BLogic.AdminLogic"/>
+<fullyQualifiedTypeName name="BLogic.ClerkLogic"/>
+<fullyQualifiedTypeName name="java.rmi.RMISecurityManager"/>
+<fullyQualifiedTypeName name="BLogic.IAdminLogic"/>
+<fullyQualifiedTypeName name="BLogic.IClerkLogic"/>
+<fullyQualifiedTypeName name="BLogic.ICustomerLogic"/>
+</qualifiedTypeNameHistroy>
