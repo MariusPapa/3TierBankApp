@@ -4,6 +4,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import Controller.Controller;
+import Controller.IController;
 import Model.Account;
 import Model.Customer;
 import Model.CustomerList;
@@ -11,18 +13,13 @@ import Model.CustomerList;
 public class CustomerLogic extends UnicastRemoteObject implements
       ICustomerLogic
 {
-   CustomerList customers;
-   
+	private IController controller;
+	
    public CustomerLogic() throws RemoteException
    {
-	   this.customers = new CustomerList();
+	   this.controller = new Controller();
    }
    
-   public CustomerLogic(CustomerList list)
-         throws RemoteException
-   {
-      this.customers = list;
-   }
 
    /**
     * Returns the balance for a specific account found by account number. Return
@@ -33,50 +30,13 @@ public class CustomerLogic extends UnicastRemoteObject implements
    @Override
    public double seeBalance(int accNo)
    {
-/*
-      for (int i = 0; i < cust.getAccounts().size(); i++)
-      {
-         if (cust.getAccounts().get(i).getAccountNo() == accNo)
-         {
-            return cust.getAccounts().get(i).getBalance();
-         }
-      }*/
-      return -1;
-
+	  return controller.seeBalance(accNo);
    }
 
    @Override
    public void transferMonay(int senderAcc, int receiverAcc, double sum)
    {
-   /*   for (int i = 0; i < cust.getAccounts().size(); i++)
-      {
-         // find the account from which you transfer the money and check the
-         // balance
-         if (cust.getAccounts().get(i).getAccountNo() == senderAcc
-               && cust.getAccounts().get(i).getBalance() >= sum)
-         {
-            // find the receiver account and check if is active
-            if (findReceiverAcc(receiverAcc) != null
-                  && findReceiverAcc(receiverAcc).isActiv() == true)
-            {
-               cust.getAccounts().get(i)
-                     .setBalance(cust.getAccounts().get(i).getBalance() - sum);
-               findReceiverAcc(receiverAcc).setBalance(
-                     findReceiverAcc(receiverAcc).getBalance() + sum);
-            }
-            else
-            {
-               System.out
-                     .println("The receiver account does not exists or is inactive");
-            }
-         }
-         else
-         {
-            System.out
-                  .println("Incorect account number or not enough money in your account");
-         }
-      }
-*/
+      controller.transferMonay(senderAcc, receiverAcc, sum);
    }
 
    /**
@@ -87,22 +47,14 @@ public class CustomerLogic extends UnicastRemoteObject implements
     **/
    public Account findReceiverAcc(int acc)
    {
-      for (int i = 0; i < customers.size(); i++)
-      {
-         if (customers.getAllCustomers().get(i).getAccounts().get(i)
-               .getAccountNo() == acc)
-         {
-            return customers.getAllCustomers().get(i).getAccount(acc);
-         }
-      }
-      return null;
+	   //Need to review this function. 
+	   return null;
    }
 
    @Override
    public ArrayList<Account> seeAllAccount()
    {
-      return null;
-
+      return controller.seeAllAccount();
    }
 
 }

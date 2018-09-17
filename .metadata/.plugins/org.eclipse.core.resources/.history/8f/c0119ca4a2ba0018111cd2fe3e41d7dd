@@ -1,0 +1,130 @@
+package Controller;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+import Model.Account;
+import Model.AdminList;
+import Model.ClerkList;
+import Model.Customer;
+import Model.CustomerList;
+
+public class Controller implements IController {
+	
+	private CustomerList customerList;
+	private ClerkList clerkList;
+	private AdminList adminList;
+	
+	public Controller(CustomerList customerList, ClerkList clerkList,
+			AdminList list) {
+
+		this.customerList = customerList;
+		this.clerkList = clerkList;
+		this.adminList = list;
+	}
+	
+	public Controller()
+	{
+		this.customerList = new CustomerList();
+		this.clerkList = new ClerkList();
+		this.adminList = new AdminList();
+	}
+
+	@Override
+	public void registerCustomer(Customer c) {
+	      customerList.addCustomer(c);
+	}
+
+	@Override
+	public Customer seeCustomerInfo(int ssn) {
+	     return customerList.getCustomer(ssn);	}
+
+	@Override
+	public Account closeCustomerAccount(int ssn, int accNo) {
+	     return customerList.getCustomer(ssn).deleteAccount(accNo);
+	}
+
+	@Override
+	public Customer closeCustomerContract(int ssn) {
+	     return customerList.removeCustomer(ssn);
+	}
+
+	@Override
+	public void changeCustomerAddress(int ssn, String address) {
+	      customerList.getCustomer(ssn).getCustomerInfo().setStreetAddress(address);		
+	}
+
+	@Override
+	public ArrayList<Customer> getAllCustomers() {
+	      return customerList.getAllCustomers();
+	}
+
+	@Override
+	public double seeBalance(int accNo) throws RemoteException {
+	      
+		for (int i = 0; i < cust.getAccounts().size(); i++)
+	      {
+	         if (cust.getAccounts().get(i).getAccountNo() == accNo)
+	         {
+	            return cust.getAccounts().get(i).getBalance();
+	         }
+	      }
+	      return -1;	}
+
+	@Override
+	public void transferMonay(int senderAcc, int receiverAcc, double sum)
+			throws RemoteException {
+
+	      for (int i = 0; i < cust.getAccounts().size(); i++)
+	      {
+	         // find the account from which you transfer the money and check the
+	         // balance
+	         if (cust.getAccounts().get(i).getAccountNo() == senderAcc
+	               && cust.getAccounts().get(i).getBalance() >= sum)
+	         {
+	            // find the receiver account and check if is active
+	            if (findReceiverAcc(receiverAcc) != null
+	                  && findReceiverAcc(receiverAcc).isActiv() == true)
+	            {
+	               cust.getAccounts().get(i)
+	                     .setBalance(cust.getAccounts().get(i).getBalance() - sum);
+	               findReceiverAcc(receiverAcc).setBalance(
+	                     findReceiverAcc(receiverAcc).getBalance() + sum);
+	            }
+	            else
+	            {
+	               System.out
+	                     .println("The receiver account does not exists or is inactive");
+	            }
+	         }
+	         else
+	         {
+	            System.out
+	                  .println("Incorect account number or not enough money in your account");
+	         }
+	      }
+	}
+	
+	   public Account findReceiverAcc(int acc)
+	   {
+	      for (int i = 0; i < customerList.size(); i++)
+	      {
+	         if (customerList.getAllCustomers().get(i).getAccounts().get(i)
+	               .getAccountNo() == acc)
+	         {
+	            return customerList.getAllCustomers().get(i).getAccount(acc);
+	         }
+	      }
+	      return null;
+	   }
+
+
+	@Override
+	public ArrayList<Account> seeAllAccount() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+}
